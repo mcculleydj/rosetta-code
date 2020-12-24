@@ -1,0 +1,12 @@
+{
+  "name": "ts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "tsc": "node node_modules/typescript/bin/tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "typescript": "^4.1.3"
+  }
+}
