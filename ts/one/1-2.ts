@@ -23,8 +23,3 @@ function checkPermutation(s1: string, s2: string): boolean {
 
   return true
 }
-
-console.log(checkPermutation('doof', 'food'))
-console.log(checkPermutation('baby', 'food'))
-console.log(checkPermutation('orly', 'yorl'))
-console.log(checkPermutation('orlyoo', 'ooorly'))

@@ -22,9 +22,3 @@ def check_permutation(s1, s2):
         char_count[c] -= 1
 
     return True
-
-
-print(check_permutation('doof', 'food'))
-print(check_permutation('baby', 'food'))
-print(check_permutation('orly', 'yorl'))
-print(check_permutation('orlyoo', 'ooorly'))
