@@ -6,5 +6,7 @@ import (
 )
 
 func main() {
-	fmt.Println(one.URLEncode("hello world foo bar "))
+	fmt.Println(one.PalindromePermutation("tacocat"))
+	fmt.Println(one.PalindromePermutation("taco2cat"))
+	fmt.Println(one.PalindromePermutation("taco2cat2"))
 }
