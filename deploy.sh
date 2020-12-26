@@ -1,9 +1,9 @@
 #!/bin/bash
 
 echo "Copying all source files to public..."
-cp python/**/*.py frontend/public
-cp go/pkg/**/*.go frontend/public
-cp ts/solutions/**/*.ts frontend/public
+cd util
+python3 copy.py
+cd ..
 
 # echo "Building and deploying the Vue application..."
 # cd frontend
