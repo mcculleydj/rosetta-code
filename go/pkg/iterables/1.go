@@ -1,4 +1,4 @@
-package one
+package iterables
 
 // IsUnique with access to O(1) lookup data structures O(n)
 func IsUnique(s string) bool {

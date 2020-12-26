@@ -1,4 +1,4 @@
-package one
+package iterables
 
 // PalindromePermutation runs in O(n)
 func PalindromePermutation(s string) bool {

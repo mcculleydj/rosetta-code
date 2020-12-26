@@ -1,4 +1,4 @@
-package one
+package iterables
 
 // CheckPermutation runs in O(n + m)
 func CheckPermutation(s1, s2 string) bool {

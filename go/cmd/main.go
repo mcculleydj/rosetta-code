@@ -2,11 +2,13 @@ package main
 
 import (
 	"fmt"
-	"rosetta-code/pkg/one"
+	"rosetta-code/pkg/iterables"
 )
 
 func main() {
-	fmt.Println(one.PalindromePermutation("tacocat"))
-	fmt.Println(one.PalindromePermutation("taco2cat"))
-	fmt.Println(one.PalindromePermutation("taco2cat2"))
+	fmt.Println(iterables.OneAway("foo", "foo0"))
+	fmt.Println(iterables.OneAway("foo", "fo"))
+	fmt.Println(iterables.OneAway("fo0", "foo"))
+	fmt.Println(iterables.OneAway("foo", "bar"))
+	fmt.Println(iterables.OneAway("foo", "foooo"))
 }
