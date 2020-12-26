@@ -1,3 +1,3 @@
-# 1.3 URL Encode
+# URL Encode
 
 Write a method to replace all spaces in a string with '%20'.
