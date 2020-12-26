@@ -1,35 +1,38 @@
 <template>
-  <div id="app">
-    <h1>hello world</h1>
-    <pre
-      v-highlightjs
-      class="code"
-    ><code class="typescript">{{ test }}</code></pre>
-  </div>
+  <v-app>
+    <v-main>
+      <Problem v-if="problem" :problem="problem" @back="problem = null" />
+      <ProblemList v-else @select="problem = $event" />
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import test from '../public/iterables-1.ts.txt'
+import ProblemList from '@/components/ProblemList'
+import Problem from '@/components/Problem'
+
 export default {
-  data: () => ({ test }),
+  components: {
+    ProblemList,
+    Problem,
+  },
+
+  data: () => ({
+    problem: null,
+  }),
+
+  methods: {
+    back() {
+      this.problem = null
+    },
+  },
 }
 </script>
 
-<style scoped>
-.code {
-  font-size: 16px;
-  font-family: monospace;
-  text-align: left;
-}
-</style>
-
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+/* vuetify is overruling highlightjs */
+.theme--light.v-application code {
+  background-color: #011627 !important;
+  color: #d6deeb !important;
 }
 </style>

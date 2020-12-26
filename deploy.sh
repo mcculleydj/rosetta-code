@@ -2,7 +2,7 @@
 
 echo "Copying all source files to public..."
 cd util
-python3 copy.py
+python3 generate_json.py
 cd ..
 
 # echo "Building and deploying the Vue application..."
