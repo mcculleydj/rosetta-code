@@ -1,7 +1,7 @@
 // O(n)
-function palindromePermutation(s:string):boolean {
-  const charCount:{[key:string]:number} = {}
-  for (let c of s) {
+function palindromePermutation(s: string): boolean {
+  const charCount: { [key: string]: number } = {}
+  for (const c of s) {
     if (charCount[c]) {
       charCount[c]++
     } else {
@@ -12,7 +12,7 @@ function palindromePermutation(s:string):boolean {
   let hasOdd = false
 
   // Object.values requires a later TS transpilation target than ES6
-  for (let char in charCount) {
+  for (const char in charCount) {
     if (charCount[char] % 2 === 1) {
       if (hasOdd) {
         return false
@@ -20,6 +20,6 @@ function palindromePermutation(s:string):boolean {
       hasOdd = true
     }
   }
-     
+
   return true
 }

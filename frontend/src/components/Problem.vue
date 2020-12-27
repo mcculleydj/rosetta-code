@@ -43,7 +43,7 @@ export default {
 
 <style scoped>
 .code {
-  font-size: 16px;
+  font-size: 20px;
   text-align: left;
   white-space: pre-wrap;
   word-wrap: normal;

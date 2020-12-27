@@ -4,9 +4,9 @@ function checkPermutation(s1: string, s2: string): boolean {
     return false
   }
 
-  const charCount:{[key: string]: number} = {}
+  const charCount: { [key: string]: number } = {}
 
-  for (let c of s1) {
+  for (const c of s1) {
     if (charCount[c]) {
       charCount[c]++
     } else {
@@ -14,7 +14,7 @@ function checkPermutation(s1: string, s2: string): boolean {
     }
   }
 
-  for (let c of s2) {
+  for (const c of s2) {
     if (!charCount[c]) {
       return false
     }
