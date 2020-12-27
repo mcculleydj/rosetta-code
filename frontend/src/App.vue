@@ -39,10 +39,33 @@
               ><code class="code typescript"></code></pre>
             </template>
             <div v-else class="desc-txt">
-              A series of HackerRank-like problems solved in the three languages
-              I know best. I find that these exercises help me to think Go
-              linguistically, Pythonically, or whatever the hell the JS/TS
-              version of that is.
+              <p>
+                I started this Rosetta Code clone to help prepare for upcoming
+                technical interviews. It serves both as a refresher on basic
+                algorithms and as an excuse to write some code in all three
+                languages I am proficient with. I find that these exercises help
+                me to think Go linguistically, Pythonically, or whatever the
+                hell the JS/TS version of that is. I've already been reminded of
+                some of the nuances of each language within the first few
+                solutions and I'm looking forward to the direct comparison
+                across languages for more complex implementations in the near
+                future.
+              </p>
+              <p>
+                The problems come from books I've purchased or the web. My
+                approach is to prototype the solution in Python and then add
+                strong typing in TS and Go. I will also add concurrency to the
+                Go implementations for more complex algorithms just to keep
+                those patterns fresh in my mind. The problems are broken down by
+                category in the list on the left. I'm using highlight.js to
+                display the formatted code and Chris Hager's
+                <a
+                  href="https://www.metachris.com/2017/02/vuejs-syntax-highlighting-with-highlightjs/"
+                  target="_blank"
+                  >blog post</a
+                >
+                on incorporating it as a Vue directive.
+              </p>
             </div>
           </v-col>
         </v-row>
