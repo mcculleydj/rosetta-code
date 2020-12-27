@@ -1,37 +1,28 @@
 <template>
-  <v-container fluid>
-    <h2>Problems Grouped by Category</h2>
-    <v-row>
-      <v-col style="max-width: 800px">
-        <v-list>
-          <v-list-group
-            v-for="category in categories"
-            :key="`category-${category}`"
-          >
-            <template v-slot:activator>
-              <v-list-item-content>
-                <v-list-item-title>
-                  {{ category }}
-                </v-list-item-title>
-              </v-list-item-content>
-            </template>
+  <v-list class="pl-2">
+    <v-list-group v-for="category in categories" :key="`category-${category}`">
+      <template v-slot:activator>
+        <v-list-item-content>
+          <v-list-item-title>
+            {{ category }}
+          </v-list-item-title>
+        </v-list-item-content>
+      </template>
 
-            <v-list-item
-              v-for="problem in problems[category]"
-              :key="`problem-${category}-${problem.number}`"
-              @click="$emit('select', problem)"
-            >
-              <v-list-item-content>
-                <v-list-item-title>
-                  {{ problem.title }}
-                </v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list-group>
-        </v-list>
-      </v-col>
-    </v-row>
-  </v-container>
+      <v-list-item
+        v-for="problem in problems[category]"
+        :key="`problem-${category}-${problem.number}`"
+        :input-value="problem === selectedProblem"
+        @click="onClick(problem)"
+      >
+        <v-list-item-content>
+          <v-list-item-title>
+            {{ problem.title }}
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list-group>
+  </v-list>
 </template>
 
 <script>
@@ -46,8 +37,14 @@ export default {
 
   data: () => ({
     problems,
+    selectedProblem: null,
   }),
+
+  methods: {
+    onClick(problem) {
+      this.selectedProblem = problem
+      this.$emit('select', problem)
+    },
+  },
 }
 </script>
-
-<style scoped></style>
