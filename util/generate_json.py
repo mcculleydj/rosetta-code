@@ -16,7 +16,7 @@ for p in sorted(problem_path.glob('**/*.md')):
         lines = list(f.readlines())
 
     [category, number] = [
-        ' '.join([s.title() for s in p.stem.split('-')[:-1]]), p.stem.split('-')[-1]]
+        ' '.join([s.title() for s in p.stem.split('_')[:-1]]), p.stem.split('_')[-1]]
     title = lines[0].replace('# ', '').strip()
     description = lines[2].strip()
 
@@ -37,11 +37,12 @@ for p in sorted(problem_path.glob('**/*.md')):
 
 for category, problems in problems_dict.items():
     for p in problems:
-        with open(python_path.joinpath(category, p['stem'] + '.py'), 'r') as f:
+        dir_name = p['stem'].split('_')[0]
+        with open(python_path.joinpath(dir_name, p['stem'] + '.py'), 'r') as f:
             p['python'] = f.read()
-        with open(go_path.joinpath(category, p['stem'] + '.go'), 'r') as f:
+        with open(go_path.joinpath(dir_name, p['stem'] + '.go'), 'r') as f:
             p['go'] = f.read()
-        with open(ts_path.joinpath(category, p['stem'] + '.ts'), 'r') as f:
+        with open(ts_path.joinpath(dir_name, p['stem'] + '.ts'), 'r') as f:
             p['ts'] = f.read()
 
 with open(dest_path.joinpath('problems.json'), 'w') as f:

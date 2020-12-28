@@ -2,9 +2,20 @@ package main
 
 import (
 	"fmt"
-	"rosetta-code/pkg/iterables"
+	"rosetta-code/pkg/linked"
 )
 
 func main() {
-	fmt.Println(iterables.IsRotation("foobar", "arfoob"))
+	n7 := linked.Node{Value: 5, Next: nil}
+	n6 := linked.Node{Value: 4, Next: &n7}
+	n5 := linked.Node{Value: 4, Next: &n6}
+	n4 := linked.Node{Value: 3, Next: &n5}
+	n3 := linked.Node{Value: 3, Next: &n4}
+	n2 := linked.Node{Value: 2, Next: &n3}
+	n1 := linked.Node{Value: 1, Next: &n2}
+	l := linked.List{Head: &n1}
+	fmt.Println(l.ToString())
+	// linked.RemoveDuplicatesTime(l)
+	linked.RemoveDuplicatesSpace(l)
+	fmt.Println(l.ToString())
 }
