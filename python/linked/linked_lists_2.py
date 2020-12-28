@@ -1,5 +1,6 @@
 # see Remove Duplicates for List and Node type definitions
 
+
 # O(n)
 def kth_to_last_element(linked_list, k):
     # maintain a leading and lagging pointer
