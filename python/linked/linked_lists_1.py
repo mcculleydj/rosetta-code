@@ -1,21 +1,20 @@
 class LinkedList:
-    def __init__(self):
-        self.head = None
+    def __init__(self, head):
+        self.head = head
 
     def __repr__(self):
         node = self.head
         nodes = []
-        while node is not None:
+        while node:
             nodes.append(str(node.value))
             node = node.next
-        nodes.append('None')
-        return " -> ".join(nodes)
+        return ' -> '.join(nodes + ['None'])
 
 
 class Node:
-    def __init__(self, value):
+    def __init__(self, value, next):
         self.value = value
-        self.next = None
+        self.next = next
 
     def __repr__(self):
         return str(self.value)
@@ -26,7 +25,7 @@ def remove_duplicates_time(linked_list):
     values = set()
     node = linked_list.head
 
-    while node.next != None:
+    while node.next:
         if node.next.value in values:
             node.next = node.next.next
         else:
@@ -38,35 +37,11 @@ def remove_duplicates_time(linked_list):
 def remove_duplicates_space(linked_list):
     index_node = linked_list.head
 
-    while index_node.next != None:
+    while index_node.next:
         cursor_node = index_node
-        while cursor_node.next != None:
+        while cursor_node.next:
             if cursor_node.next.value == index_node.value:
                 cursor_node.next = cursor_node.next.next
             else:
                 cursor_node = cursor_node.next
         index_node = index_node.next
-
-
-ll = LinkedList()
-
-n1 = Node(1)
-n2 = Node(2)
-n3 = Node(3)
-n4 = Node(4)
-n5 = Node(4)
-n6 = Node(5)
-n7 = Node(5)
-
-ll.head = n1
-n1.next = n2
-n2.next = n3
-n3.next = n4
-n4.next = n5
-n5.next = n6
-n6.next = n7
-
-print(ll)
-remove_duplicates_time(ll)
-# remove_duplicates_space(ll)
-print(ll)

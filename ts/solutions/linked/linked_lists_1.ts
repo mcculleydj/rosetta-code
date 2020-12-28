@@ -1,5 +1,5 @@
 // Node already exists in JS
-class Node_ {
+export class Node_ {
   value: number
   next: Node_
 
@@ -9,7 +9,7 @@ class Node_ {
   }
 }
 
-class LinkedList {
+export class LinkedList {
   head: Node_
 
   constructor(head: Node_) {
