@@ -63,7 +63,7 @@ class StackSet {
   }
 }
 
-class Stack {
+export class Stack {
   top: Frame
   length: number
 
@@ -72,7 +72,7 @@ class Stack {
     this.length = 0
   }
 
-  toString() {
+  toString(): string {
     const frames: string[] = []
     let top = this.top
 
@@ -89,7 +89,7 @@ class Stack {
     return 'empty stack'
   }
 
-  push(data: number) {
+  push(data: number): void {
     const frame = new Frame(data, this.top)
     this.top = frame
     this.length++
@@ -121,41 +121,3 @@ class Frame {
     return `[ ${this.data} ]`
   }
 }
-
-const ss = new StackSet(5)
-ss.push(1)
-ss.push(2)
-ss.push(3)
-ss.push(4)
-ss.push(5)
-ss.push(1)
-ss.push(2)
-ss.push(3)
-ss.push(4)
-ss.push(5)
-ss.push(1)
-ss.push(2)
-ss.push(3)
-ss.push(4)
-ss.push(5)
-
-console.log(ss.toString())
-
-console.log(ss.popAt(1))
-console.log(ss.popAt(1))
-console.log(ss.popAt(1))
-console.log(ss.popAt(1))
-console.log(ss.popAt(1))
-
-console.log(ss.toString())
-
-console.log(ss.pop())
-console.log(ss.pop())
-console.log(ss.pop())
-console.log(ss.pop())
-console.log(ss.pop())
-
-console.log(ss.toString())
-
-console.log(ss.pop())
-console.log(ss.toString())
