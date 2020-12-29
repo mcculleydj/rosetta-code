@@ -1,4 +1,4 @@
-import { Node_ } from './linked_lists_1'
+import { Node_ } from './linked_1'
 
 // O(1) -- see Python for comments
 function deleteNode(n: Node_) {

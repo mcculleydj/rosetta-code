@@ -2,19 +2,45 @@ package main
 
 import (
 	"fmt"
-	"rosetta-code/pkg/linked"
+	"rosetta-code/pkg/stacks"
 )
 
 func main() {
-	n5 := linked.Node{Value: 5, Next: nil}
-	n4 := linked.Node{Value: 4, Next: &n5}
-	n3 := linked.Node{Value: 3, Next: &n4}
-	n2 := linked.Node{Value: 2, Next: &n3}
-	n1 := linked.Node{Value: 1, Next: &n2}
-	l := linked.List{Head: &n1}
+	ss := stacks.StackSet{StackCapacity: 5}
+	ss.Push(1)
+	ss.Push(2)
+	ss.Push(3)
+	ss.Push(4)
+	ss.Push(5)
+	ss.Push(1)
+	ss.Push(2)
+	ss.Push(3)
+	ss.Push(4)
+	ss.Push(5)
+	ss.Push(1)
+	ss.Push(2)
+	ss.Push(3)
+	ss.Push(4)
+	ss.Push(5)
 
-	n5.Next = &n2
+	fmt.Println(ss.ToString())
 
-	fmt.Println(linked.FindLoopStart(l))
-	fmt.Println(linked.FindLoopStartHard(l))
+	fmt.Println(ss.PopAt(1))
+	fmt.Println(ss.PopAt(1))
+	fmt.Println(ss.PopAt(1))
+	fmt.Println(ss.PopAt(1))
+	fmt.Println(ss.PopAt(1))
+
+	fmt.Println(ss.ToString())
+
+	fmt.Println(ss.Pop())
+	fmt.Println(ss.Pop())
+	fmt.Println(ss.Pop())
+	fmt.Println(ss.Pop())
+	fmt.Println(ss.Pop())
+
+	fmt.Println(ss.ToString())
+
+	fmt.Println(ss.Pop())
+	fmt.Println(ss.ToString())
 }

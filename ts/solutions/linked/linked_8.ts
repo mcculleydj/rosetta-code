@@ -1,4 +1,4 @@
-import { LinkedList, Node_ } from './linked_lists_1'
+import { LinkedList, Node_ } from './linked_1'
 
 // findLoopStart is O(n)
 function findLoopStart(l: LinkedList): Node_ {

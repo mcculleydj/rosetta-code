@@ -1,4 +1,4 @@
-import { LinkedList, Node_ } from './linked_lists_1'
+import { LinkedList, Node_ } from './linked_1'
 
 // see Remove Duplicates for List and Node type definitions
 
