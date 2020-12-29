@@ -9,26 +9,34 @@ python_path = Path('../python')
 go_path = Path('../go/pkg')
 ts_path = Path('../ts/solutions')
 
+name_to_category = {
+    'strings': 'Strings',
+    'linked': 'Linked Lists',
+    'stacks': 'Stacks',
+    'queues': 'Queues',
+    'matrices': 'Matrices',
+}
+
 problems_dict = {}
 
 for p in sorted(problem_path.glob('**/*.md')):
     with open(p, 'r') as f:
         lines = list(f.readlines())
 
-    [category, number] = [
-        ' '.join([s.title() for s in p.stem.split('_')[:-1]]), p.stem.split('_')[-1]]
+    name = p.stem.split('_')[0]
+    number = p.stem.split('_')[1]
     title = lines[0].replace('# ', '').strip()
     description = lines[2].strip()
 
-    if problems_dict.get(category):
-        problems_dict[category].append({
+    if problems_dict.get(name_to_category[name]):
+        problems_dict[name_to_category[name]].append({
             'stem': p.stem,
             'number': number,
             'title': title,
             'description': description,
         })
     else:
-        problems_dict[category] = [{
+        problems_dict[name_to_category[name]] = [{
             'stem': p.stem,
             'number': number,
             'title': title,

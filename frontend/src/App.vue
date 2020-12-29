@@ -52,14 +52,14 @@
               </p>
               <p>
                 The problems come from books I've purchased or the web. My
-                approach is to prototype the solution in Python and then add
-                strong typing by reimplementing the solution in TS and Go.
-                Expect to see more comments in the Python for this reason. I
-                will also add concurrency to the Go implementations for more
-                complex algorithms just to keep those patterns fresh in my mind.
-                The problems are broken down by category in the list on the
-                left. I'm using highlight.js to display the formatted code and
-                Chris Hager's
+                approach is to prototype the solution in Python and then deal
+                with pointers and typing in TS and Go. Expect to see more
+                comments in the Python for this reason. I will also add
+                concurrency to the Go implementations for more complex
+                algorithms just to keep those patterns fresh in my mind. The
+                problems are broken down by category in the list on the left.
+                I'm using highlight.js to display the formatted code and Chris
+                Hager's
                 <a
                   href="https://www.metachris.com/2017/02/vuejs-syntax-highlighting-with-highlightjs/"
                   target="_blank"
