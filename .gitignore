@@ -1,3 +1,4 @@
 ts/node_modules
 ts/**/*.js
 ts/**/*.map
+**/__pycache__

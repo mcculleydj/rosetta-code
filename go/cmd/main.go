@@ -6,41 +6,19 @@ import (
 )
 
 func main() {
-	ss := stacks.StackSet{StackCapacity: 5}
-	ss.Push(1)
-	ss.Push(2)
-	ss.Push(3)
-	ss.Push(4)
-	ss.Push(5)
-	ss.Push(1)
-	ss.Push(2)
-	ss.Push(3)
-	ss.Push(4)
-	ss.Push(5)
-	ss.Push(1)
-	ss.Push(2)
-	ss.Push(3)
-	ss.Push(4)
-	ss.Push(5)
+	q := stacks.Queue{}
 
-	fmt.Println(ss.ToString())
+	q.Add(1)
+	q.Add(2)
+	q.Add(3)
 
-	fmt.Println(ss.PopAt(1))
-	fmt.Println(ss.PopAt(1))
-	fmt.Println(ss.PopAt(1))
-	fmt.Println(ss.PopAt(1))
-	fmt.Println(ss.PopAt(1))
+	fmt.Println(q.ToString())
 
-	fmt.Println(ss.ToString())
+	fmt.Println(q.Remove())
+	fmt.Println(q.ToString())
+	fmt.Println(q.Remove())
+	fmt.Println(q.Remove())
 
-	fmt.Println(ss.Pop())
-	fmt.Println(ss.Pop())
-	fmt.Println(ss.Pop())
-	fmt.Println(ss.Pop())
-	fmt.Println(ss.Pop())
+	fmt.Println(q.ToString())
 
-	fmt.Println(ss.ToString())
-
-	fmt.Println(ss.Pop())
-	fmt.Println(ss.ToString())
 }
