@@ -1,6 +1,9 @@
 package linked
 
-type stack struct {
+// see Remove Duplicates for List and Node type definitions
+
+// Stack implements a LIFO data structure
+type Stack struct {
 	ns []*Node
 }
 
@@ -39,9 +42,9 @@ func RightToLeftSum(l1, l2 List) List {
 	return sumList
 }
 
-// O(n)
-func (l List) listToStack() stack {
-	stack := stack{}
+// ListToStack is O(n)
+func (l List) ListToStack() Stack {
+	stack := Stack{}
 	node := l.Head
 	for node != nil {
 		stack.ns = append(stack.ns, node)
@@ -50,15 +53,15 @@ func (l List) listToStack() stack {
 	return stack
 }
 
-// for both stack methods it is important to pass s by reference (*stack)
+// for both stack methods it is important to pass by reference (*Stack)
 
-// O(1)
-func (s *stack) len() int {
+// Len is O(1)
+func (s *Stack) Len() int {
 	return len(s.ns)
 }
 
-// O(1)
-func (s *stack) pop() *Node {
+// Pop is O(1)
+func (s *Stack) Pop() *Node {
 	node := s.ns[len(s.ns)-1]
 	s.ns = s.ns[0 : len(s.ns)-1]
 	return node
@@ -66,28 +69,28 @@ func (s *stack) pop() *Node {
 
 // LeftToRightSum is O(m + n)
 func LeftToRightSum(l1, l2 List) List {
-	stack1 := l1.listToStack()
-	stack2 := l2.listToStack()
+	stack1 := l1.ListToStack()
+	stack2 := l2.ListToStack()
 
 	var head *Node
 	var node *Node
 	var nextValue int
 	carry := 0
 
-	for stack1.len() > 0 || stack2.len() > 0 {
-		if stack1.len() == 0 {
-			node = stack2.pop()
+	for stack1.Len() > 0 || stack2.Len() > 0 {
+		if stack1.Len() == 0 {
+			node = stack2.Pop()
 			nextValue = node.Value + carry
 			node.Value = nextValue % 10
 			node.Next = head
-		} else if stack2.len() == 0 {
-			node = stack1.pop()
+		} else if stack2.Len() == 0 {
+			node = stack1.Pop()
 			nextValue = node.Value + carry
 			node.Value = nextValue % 10
 			node.Next = head
 		} else {
-			node1 := stack1.pop()
-			node2 := stack2.pop()
+			node1 := stack1.Pop()
+			node2 := stack2.Pop()
 			nextValue = node1.Value + node2.Value + carry
 			node = &Node{Value: nextValue % 10, Next: head}
 		}
