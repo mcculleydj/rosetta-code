@@ -3,7 +3,7 @@
     <v-list-group v-for="category in categories" :key="`category-${category}`">
       <template v-slot:activator>
         <v-list-item-content>
-          <v-list-item-title>
+          <v-list-item-title style="font-size: 20px">
             {{ category }}
           </v-list-item-title>
         </v-list-item-content>
@@ -15,6 +15,9 @@
         :input-value="problem === selectedProblem"
         @click="onClick(problem)"
       >
+        <v-list-item-icon>
+          <v-icon>mdi-chevron-right</v-icon>
+        </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>
             {{ problem.title }}

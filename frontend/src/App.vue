@@ -47,17 +47,19 @@
                 me to think Go linguistically, Pythonically, or whatever the
                 hell the JS/TS version of that is. I've already been reminded of
                 some of the nuances of each language within the first few
-                solutions and I'm looking forward to the direct comparison
-                across languages for more complex implementations in the near
-                future.
+                implementations and I'm looking forward to the comparison across
+                languages for more complex problems in the near future.
               </p>
               <p>
                 The problems come from books I've purchased or the web. My
                 approach is to prototype the solution in Python and then add
-                strong typing by reimplementing the solution in TS and Go. Expect to see more comments in the Python for this reason. I will also add concurrency to the Go implementations for more complex algorithms just to keep
-                those patterns fresh in my mind. The problems are broken down by
-                category in the list on the left. I'm using highlight.js to
-                display the formatted code and Chris Hager's
+                strong typing by reimplementing the solution in TS and Go.
+                Expect to see more comments in the Python for this reason. I
+                will also add concurrency to the Go implementations for more
+                complex algorithms just to keep those patterns fresh in my mind.
+                The problems are broken down by category in the list on the
+                left. I'm using highlight.js to display the formatted code and
+                Chris Hager's
                 <a
                   href="https://www.metachris.com/2017/02/vuejs-syntax-highlighting-with-highlightjs/"
                   target="_blank"
@@ -94,16 +96,22 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
+
 /* vuetify is overruling highlightjs */
 .theme--light.v-application code {
   background-color: #011627 !important;
   color: #d6deeb !important;
 }
+
+.hljs {
+  font-family: 'Fira Code', monospace !important;
+}
 </style>
 
 <style scoped>
 .code {
-  font-size: 20px;
+  font-size: 18px;
   text-align: left;
   white-space: pre-wrap;
   word-wrap: normal;
