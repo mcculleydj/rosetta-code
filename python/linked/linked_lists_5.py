@@ -84,28 +84,3 @@ def left_to_right_sum(l1, l2):
         head = node
 
     return LinkedList(head)
-
-
-# n4 = Node(1, None)
-# n3 = Node(2, n4)
-# n2 = Node(9, n3)
-# n1 = Node(5, n2)
-# l1 = LinkedList(n1)
-
-# n7 = Node(8, None)
-# n6 = Node(5, n7)
-# n5 = Node(3, n6)
-# l2 = LinkedList(n5)
-
-n4 = Node(9, None)
-n3 = Node(9, n4)
-n2 = Node(9, n3)
-n1 = Node(9, n2)
-l1 = LinkedList(n1)
-
-n5 = Node(1, None)
-l2 = LinkedList(n5)
-
-
-# print(right_to_left_sum(l1, l2))
-print(left_to_right_sum(l1, l2))

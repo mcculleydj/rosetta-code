@@ -23,17 +23,3 @@ def find_intersection(l1, l2):
         if node in list1_nodes:
             return node
         node = node.next
-
-
-n3 = Node(3, None)
-n2 = Node(2, n3)
-n1 = Node(1, n2)
-l1 = LinkedList(n1)
-
-
-n5 = Node(5, n2)
-n4 = Node(4, n5)
-l2 = LinkedList(n4)
-
-
-print(find_intersection(l1, l2))

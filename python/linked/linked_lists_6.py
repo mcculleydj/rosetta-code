@@ -30,13 +30,3 @@ def is_palindrome(l):
         list_node = list_node.next
 
     return True
-
-
-n5 = Node('a', None)
-n4 = Node('b', n5)
-n3 = Node('c', n4)
-n2 = Node('b', n3)
-n1 = Node('a', n2)
-l = LinkedList(n1)
-
-print(is_palindrome(l))

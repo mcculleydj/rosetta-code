@@ -15,12 +15,3 @@ def zero_matrix(m):
             # O(1) lookup by using sets
             if i in zero_rows or j in zero_columns:
                 m[i][j] = 0
-
-
-m = [
-    [1, 2, 3],
-    [1, 0, 3],
-    [1, 2, 3]
-]
-zero_matrix(m)
-print(m)

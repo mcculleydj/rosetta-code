@@ -22,5 +22,3 @@ function compressString(s: string): string {
 
   return acc.length > s.length ? s : acc.join('')
 }
-
-console.log(compressString('aabcccccaaa'))

@@ -62,15 +62,3 @@ def find_loop_start_hard(l):
         collision_cursor = collision_cursor.next
 
     return head_cursor
-
-
-n5 = Node(5, None)
-n4 = Node(4, n5)
-n3 = Node(3, n4)
-n2 = Node(2, n3)
-n1 = Node(1, n2)
-l = LinkedList(n1)
-
-n5.next = n2
-
-print(find_loop_start_hard(l))
