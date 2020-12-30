@@ -2,23 +2,15 @@ package main
 
 import (
 	"fmt"
-	"rosetta-code/pkg/stacks"
+	"rosetta-code/pkg/graphs"
 )
 
 func main() {
-	q := stacks.Queue{}
+	n4 := graphs.Node{Data: 4, Adj: []*graphs.Node{}}
+	n3 := graphs.Node{Data: 3, Adj: []*graphs.Node{&n4}}
+	n2 := graphs.Node{Data: 2, Adj: []*graphs.Node{&n4}}
+	n1 := graphs.Node{Data: 1, Adj: []*graphs.Node{&n2, &n3}}
 
-	q.Add(1)
-	q.Add(2)
-	q.Add(3)
-
-	fmt.Println(q.ToString())
-
-	fmt.Println(q.Remove())
-	fmt.Println(q.ToString())
-	fmt.Println(q.Remove())
-	fmt.Println(q.Remove())
-
-	fmt.Println(q.ToString())
-
+	fmt.Println(graphs.PathExists(&n1, &n4))
+	fmt.Println(graphs.PathExists(&n2, &n3))
 }
