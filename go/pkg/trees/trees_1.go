@@ -6,14 +6,14 @@ import (
 )
 
 // Node represents a binary tree node
-type Node struct {
+type TreeNode struct {
 	Data  int
-	Left  *Node
-	Right *Node
+	Left  *TreeNode
+	Right *TreeNode
 }
 
 // ToString provides a string representation for binary tree node
-func (n *Node) ToString() string {
+func (n *TreeNode) ToString() string {
 	if n == nil {
 		return "nil"
 	}
@@ -30,25 +30,25 @@ func splitSlice(ns []int) (middle int, left []int, right []int) {
 }
 
 // O(n)
-func MinBST(ns []int, node *Node) *Node {
+func MinBST(ns []int, node *TreeNode) *TreeNode {
 	if len(ns) == 0 {
 		return nil
 	}
 
 	if node == nil {
-		node = new(Node)
+		node = new(TreeNode)
 	}
 
 	data, left, right := splitSlice(ns)
 	node.Data = data
 
 	if len(left) > 0 {
-		node.Left = new(Node)
+		node.Left = new(TreeNode)
 		MinBST(left, node.Left)
 	}
 
 	if len(right) > 0 {
-		node.Right = new(Node)
+		node.Right = new(TreeNode)
 		MinBST(right, node.Right)
 	}
 

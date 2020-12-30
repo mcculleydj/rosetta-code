@@ -1,9 +1,9 @@
-class BTNode {
+export class TreeNode {
   data: number
-  left: BTNode
-  right: BTNode
+  left: TreeNode
+  right: TreeNode
 
-  constructor(data?: number, left?: BTNode, right?: BTNode) {
+  constructor(data?: number, left?: TreeNode, right?: TreeNode) {
     this.data = data
     this.left = left
     this.right = right
@@ -34,21 +34,21 @@ function splitList(ns: number[]): SplitList {
 }
 
 // O(n)
-function minBST(ns: number[], node?: BTNode) {
+function minBST(ns: number[], node?: TreeNode) {
   if (!node) {
-    node = new BTNode()
+    node = new TreeNode()
   }
 
   const { middle, left, right } = splitList(ns)
   node.data = middle
 
   if (left.length) {
-    node.left = new BTNode()
+    node.left = new TreeNode()
     minBST(left, node.left)
   }
 
   if (right.length) {
-    node.right = new BTNode()
+    node.right = new TreeNode()
     minBST(right, node.right)
   }
 
