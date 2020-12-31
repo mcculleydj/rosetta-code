@@ -40,23 +40,28 @@
             </template>
             <div v-else class="desc-txt">
               <p>
-                I started this Rosetta Code clone to help prepare for upcoming
-                technical interviews. It serves both as a refresher on basic
-                algorithms and as an excuse to write some code in all three
-                languages I am proficient with. I find that these exercises help
-                me to think Go linguistically, Pythonically, or whatever the
-                hell the JS/TS version of that is. I've already been reminded of
-                some of the nuances of each language within the first few
-                implementations and I'm looking forward to the comparison across
-                languages for more complex problems in the near future.
+                I started this
+                <a
+                  href="http://www.rosettacode.org/wiki/Rosetta_Code"
+                  target="_blank"
+                  >Rosetta Code</a
+                >
+                clone to help prepare for upcoming technical interviews. It
+                serves both as a refresher on basic algorithms and as an excuse
+                to write some code in all three languages I am proficient with.
+                I find that these exercises help me to think Go linguistically,
+                Pythonically, or in the case of JS, just go with it. I've
+                already been reminded of some of the nuances of each language
+                within the first few implementations and I'm looking forward to
+                the comparison for more complex problems in the near future.
               </p>
               <p>
-                The problems come from books I've purchased or the web. My
-                approach is to prototype the solution in Python and then deal
-                with pointers and typing in TS and Go. Expect to see more
-                comments in the Python for this reason. I will also add
-                concurrency to the Go implementations for more complex
-                algorithms just to keep those patterns fresh in my mind. The
+                The prompts come from books I've purchased or the web. My
+                general approach is to prototype the solution in Python and then
+                deal with strong typing in the other two languages. Expect to
+                see more comments in the Python for this reason. I will also add
+                concurrency to some of the Go implementations where it makes
+                sense in order to keep those patterns fresh in my mind. The
                 problems are broken down by category in the list on the left.
                 I'm using highlight.js to display the formatted code and Chris
                 Hager's
