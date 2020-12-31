@@ -6,22 +6,22 @@ import (
 )
 
 func main() {
-	root := new(trees.TreeNode)
-	root.Data = 1
-	root.Left = new(trees.TreeNode)
-	root.Left.Data = 2
-	root.Right = new(trees.TreeNode)
-	root.Right.Data = 3
-	root.Right.Right = new(trees.TreeNode)
-	root.Right.Right.Data = 4
-	root.Right.Right.Right = new(trees.TreeNode)
-	root.Right.Right.Right.Data = 5
+	n1 := &trees.TreeNode{Data: 1}
+	n2 := &trees.TreeNode{Data: 2}
+	n3 := &trees.TreeNode{Data: 3}
+	n4 := &trees.TreeNode{Data: 4}
+	n5 := &trees.TreeNode{Data: 5}
+	// n6 := &trees.TreeNode{Data: 6}
+	// n7 := &trees.TreeNode{Data: 7}
 
-	q := new(trees.Queue)
-	depths := []*trees.Queue{}
-	ret := trees.ListDepths(root, 0, q, depths)
+	n1.Left = n2
+	n1.Right = n3
 
-	for _, q := range ret {
-		fmt.Println(q.ToString())
-	}
+	n2.Left = n4
+	n2.Right = n5
+
+	n4.Left = n5
+	// n3.Right = n7
+
+	fmt.Println(trees.IsBalancedWrapper(n1))
 }

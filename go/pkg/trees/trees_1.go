@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-// Node represents a binary tree node
+// TreeNode represents a binary tree node
 type TreeNode struct {
 	Data  int
 	Left  *TreeNode
@@ -29,7 +29,7 @@ func splitSlice(ns []int) (middle int, left []int, right []int) {
 	return ns[i], ns[:i], ns[i+1:]
 }
 
-// O(n)
+// MinBST runs in O(n)
 func MinBST(ns []int, node *TreeNode) *TreeNode {
 	if len(ns) == 0 {
 		return nil

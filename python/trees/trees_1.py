@@ -1,4 +1,4 @@
-class Node:
+class TreeNode:
     def __init__(self, data=None, left=None, right=None):
         self.data = data
         self.left = left
@@ -18,7 +18,7 @@ def splice_middle(l):
 
 
 # O(n) one recursive call per item in the list
-def min_bst(l, node=Node()):
+def min_bst(l, node=TreeNode()):
     if len(l) == 0:
         return
 
@@ -26,10 +26,10 @@ def min_bst(l, node=Node()):
     node.data = data
 
     if len(left):
-        node.left = Node()
+        node.left = TreeNode()
         min_bst(left, node.left)
     if len(right):
-        node.right = Node()
+        node.right = TreeNode()
         min_bst(right, node.right)
 
     return node

@@ -1,4 +1,4 @@
-from trees_1 import Node as TreeNode
+from trees_1 import TreeNode
 
 # for tree node class definition see Minimal BST
 
