@@ -23,8 +23,8 @@ type NodeState struct {
 
 // IsBalanced runs in O(n)
 func IsBalanced(tn *TreeNode, wgs chan *sync.WaitGroup, wg *sync.WaitGroup, result *NodeState) {
-	// defer an anonymous function so that
-	// the WaitGroup is always completed regardless of how this function exits
+	// defer an anonymous function so that Done()
+	// is called regardless of how this function exits
 	// without defer this code would need to appear above every return statement
 	// hooray Go!
 	defer func() {
