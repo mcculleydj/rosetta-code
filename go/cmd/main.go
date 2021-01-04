@@ -2,28 +2,35 @@ package main
 
 import (
 	"fmt"
-	"rosetta-code/pkg/trees"
+	"rosetta-code/pkg/graphs"
 )
 
 func main() {
-	n1 := &trees.TreeNodeWithParent{Data: 4}
-	n2 := &trees.TreeNodeWithParent{Data: -1}
-	n3 := &trees.TreeNodeWithParent{Data: 3}
-	n4 := &trees.TreeNodeWithParent{Data: 2}
-	n5 := &trees.TreeNodeWithParent{Data: 1}
+	ps := []string{"a", "b", "c"}
+	ds := []graphs.Dependency{
+		{Blocker: "a", Project: "b"},
+		{Blocker: "b", Project: "c"},
+	}
 
-	n1.Left = n2
-	n2.Parent = n1
-	n2.Right = n3
-	n3.Parent = n2
-	n3.Left = n4
-	n4.Parent = n3
-	n4.Left = n5
-	n5.Parent = n4
+	fmt.Println(graphs.BuildSchedule(ps, ds))
 
-	fmt.Println(trees.FindNext(n1).ToString())
-	fmt.Println(trees.FindNext(n2).ToString())
-	fmt.Println(trees.FindNext(n3).ToString())
-	fmt.Println(trees.FindNext(n4).ToString())
-	fmt.Println(trees.FindNext(n5).ToString())
+	ps = []string{"a", "b", "c", "d", "e", "f"}
+	ds = []graphs.Dependency{
+		{Blocker: "a", Project: "d"},
+		{Blocker: "f", Project: "b"},
+		{Blocker: "b", Project: "d"},
+		{Blocker: "f", Project: "a"},
+		{Blocker: "d", Project: "c"},
+	}
+
+	fmt.Println(graphs.BuildSchedule(ps, ds))
+
+	ps = []string{"a", "b", "c"}
+	ds = []graphs.Dependency{
+		{Blocker: "a", Project: "b"},
+		{Blocker: "b", Project: "c"},
+		{Blocker: "c", Project: "a"},
+	}
+
+	fmt.Println(graphs.BuildSchedule(ps, ds))
 }

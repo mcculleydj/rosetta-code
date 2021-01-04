@@ -65,6 +65,11 @@ func (q *Queue) Remove() (*TreeNode, int) {
 
 	node := q.Head
 	q.Head = q.Head.Next
+
+	if q.Length == 1 {
+		q.Tail = nil
+	}
+
 	q.Length--
 
 	return node.TreeNode, node.Depth

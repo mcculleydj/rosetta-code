@@ -1,13 +1,13 @@
-class Vertex {
-  data: number
+export class Vertex {
+  data: number | string
   adjacency: Vertex[]
 
-  constructor(data?: number, adjacency?: Vertex[]) {
+  constructor(data?: number | string) {
     this.data = data
-    this.adjacency = adjacency
+    this.adjacency = []
   }
 
-  toString() {
+  toString(): string {
     return `Data: ${this.data} | Edges: ${this.adjacency.map(n => n.data)}`
   }
 }

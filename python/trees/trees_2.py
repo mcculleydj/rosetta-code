@@ -48,6 +48,10 @@ class Queue:
 
         node = self.head
         self.head = self.head.next
+
+        if self.length == 1:
+            self.tail = None
+
         self.length -= 1
 
         return node.tree_node, node.depth

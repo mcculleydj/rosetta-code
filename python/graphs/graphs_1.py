@@ -1,7 +1,7 @@
 class Node:
-    def __init__(self, data=None, neighbors=[]):
+    def __init__(self, data=None):
         self.data = data
-        self.neighbors = neighbors
+        self.neighbors = []
 
     def __repr__(self):
         return f'Data: {self.data} | Edges: {[neighbor.data for neighbor in self.neighbors]}'
