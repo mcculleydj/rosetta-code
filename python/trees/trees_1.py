@@ -5,8 +5,6 @@ class TreeNode:
         self.right = right
 
     def __repr__(self):
-        if not self.left and not self.right:
-            return str(self.data)
         return f'{self.data} => ({self.left}, {self.right})'
 
 
