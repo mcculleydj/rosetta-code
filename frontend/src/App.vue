@@ -5,7 +5,7 @@
         <v-row>
           <v-col cols="auto">
             <v-img src="logo.png" width="300" />
-            <ProblemList @select="problem = $event" />
+            <ProblemList @select="handleSelection($event)" />
           </v-col>
           <v-col class="scroll mt-5">
             <template v-if="problem">
@@ -95,6 +95,12 @@ export default {
   methods: {
     back() {
       this.problem = null
+    },
+
+    handleSelection(problem) {
+      this.problem = problem
+      const el = document.getElementsByClassName('scroll')[0]
+      el.scrollTop = 0
     },
   },
 }
