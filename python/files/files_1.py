@@ -34,9 +34,9 @@ def read_file():
     word_to_indices = defaultdict(list)
     i = 1
 
-    with open('test_1.txt') as f:
+    with open('file_1.txt') as f:
         # lazy for a multi-line file
-        # in the event of a single-line file Python can still handle 
+        # in the event of a single-line file Python can still handle
         # files that exceed available memory by using swap
         for line in f:
             words = line.split()
@@ -101,6 +101,3 @@ def min_word_distance(w1, w2):
             min_distance = min_i
 
     return min_distance
-
-
-print(min_word_distance('Hippolyte', 'Lavater'))
