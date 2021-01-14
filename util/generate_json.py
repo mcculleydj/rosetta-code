@@ -16,7 +16,8 @@ name_to_category = {
     'queues': 'Queues',
     'matrices': 'Matrices',
     'trees': 'Trees',
-    'graphs': 'Graphs'
+    'graphs': 'Graphs',
+    'files': 'Files'
 }
 
 problems_dict = {}
