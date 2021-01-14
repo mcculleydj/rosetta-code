@@ -27,6 +27,9 @@
 # in this case only consider l_k - s_i or l_j - s_i
 # for the nearest value in L, either the first or last element
 
+# Special thanks to Matt Kay and Ryan Freedman for contributing
+# to these implementations
+
 from collections import defaultdict
 
 
