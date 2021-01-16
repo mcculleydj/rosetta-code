@@ -11,24 +11,16 @@
 # between any element of U and any element of V
 # | u_i - v_j | for all u_i in U and v_j in V
 
-# let S be the shorter list with m elements
-# let L be the longer list with n elements
-# for any s_i in S we can use binary search
-# to determine its proper location in L in O(log n)
-# if s_i would occur between l_j, and l_k in L
-# then min(s_i - l_j, l_k - s_i) is the minimum
-# distance for s_i, the minimum of all minimum distances
-# for all s_i in S is the minimum distance between these
-# two words in the file and can be determined in O(m log n)
-
-# note, at least one of l_j or l_k must exist for all s_i
-# however, if s_i is less than all elements of L
-# or greater than all elements of L then one will not exist
-# in this case only consider l_k - s_i or l_j - s_i
-# for the nearest value in L, either the first or last element
-
-# Special thanks to Matt Kay and Ryan Freedman for contributing
-# to these implementations
+# maintain an index pointer for each ordered list initialized to the start
+# set the current minimum distance to the absolute difference of the first elements
+# increment the index pointer that results in the smaller absolute distance
+# note, this may be worse than the current minimum
+# keep track of the minimum distance encountered across all iterations
+# eventually, one pointer will reach the end of the list
+# advance the other pointer so long as current distance is decreasing
+# once distance starts increasing it will never get smaller
+# since one list has been completely exhausted and the lists are ordered
+# return the minimum distance encountered in O(m + n)
 
 from collections import defaultdict
 
@@ -52,29 +44,64 @@ def read_file():
     return word_to_indices
 
 
-def binary_search(value, arr):
-    if value < arr[0]:
-        return arr[0] - value
-    if value > arr[len(arr) - 1]:
-        return value - arr[len(arr) - 1]
-    if len(arr) == 2:
-        return min(value - arr[0], arr[1] - value)
+# O(m + n) find the element in arr1 and the element in arr2
+# that are closest to each other and return the distance
+def closest_pair(arr1, arr2):
+    if len(arr1) == 1 and len(arr2) == 1:
+        return abs(arr1[0] - arr2[0])
+
+    # m || n == 1 case could be handled in O(log n) using binary search
+    if len(arr1) == 1:
+        distance = None
+        current_distance = None
+        i = 0
+        while i < len(arr2) and (current_distance is None or distance < current_distance):
+            current_distance = distance
+            distance = abs(arr1[0] - arr2[i])
+            i += 1
+        return min(distance, current_distance)
+    elif len(arr2) == 1:
+        distance = None
+        current_distance = None
+        i = 0
+        while i < len(arr1) and (current_distance is None or distance < current_distance):
+            current_distance = distance
+            distance = abs(arr2[0] - arr1[i])
+            i += 1
+        return min(distance, current_distance)
 
     i = 0
-    j = len(arr) - 1
+    j = 0
+    min_distance = None
+    distance = 0
 
-    while j - i > 1:
-        span = j - i
-        middle = arr[i + span // 2]
+    while i < len(arr1) - 1 and j < len(arr2) - 1:
+        distance = abs(arr1[i] - arr2[j])
+        advance_i_distance = abs(arr1[i+1] - arr2[j])
+        advance_j_distance = abs(arr1[i] - arr2[j+1])
 
-        if value < middle:
-            # move upper bound to middle
-            j = i + span // 2
+        if min_distance is None or distance < min_distance:
+            min_distance = distance
+
+        if advance_i_distance < advance_j_distance:
+            i += 1
         else:
-            # move lower bound to middle
-            i += span // 2
+            j += 1
 
-    return min(value - arr[i], arr[j] - value)
+    current_distance = distance
+
+    if i == len(arr1) - 1:
+        while j < len(arr2) and distance <= current_distance:
+            j += 1
+            current_distance = distance
+            distance = abs(arr1[i] - arr2[j])
+    elif i != len(arr1) - 1:
+        while i < len(arr1) and distance <= current_distance:
+            i += 1
+            current_distance = distance
+            distance = abs(arr1[i] - arr2[j])
+
+    return min(min_distance, current_distance)
 
 
 def min_word_distance(w1, w2):
@@ -90,17 +117,4 @@ def min_word_distance(w1, w2):
     if not idx2:
         raise Exception(f'{w2} does not appear in the file')
 
-    if len(idx1) > len(idx2):
-        outer, inner = idx2, idx1
-    else:
-        outer, inner = idx1, idx2
-
-    min_distance = None
-
-    for i in outer:
-        min_i = binary_search(i, inner)
-
-        if min_distance is None or min_i < min_distance:
-            min_distance = min_i
-
-    return min_distance
+    return closest_pair(idx1, idx2)

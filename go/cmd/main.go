@@ -11,4 +11,5 @@ func main() {
 		panic(err.Error())
 	}
 	fmt.Println(files.MinWordDistance(m, "Hippolyte", "Lavater"))
+	fmt.Println(files.MinWordDistance(m, "Hippolyte", "Bolk"))
 }

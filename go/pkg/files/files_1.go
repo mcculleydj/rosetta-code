@@ -1,10 +1,8 @@
 package files
 
 import (
-	"errors"
 	"fmt"
 	"io/ioutil"
-	"math"
 	"strings"
 )
 
@@ -26,38 +24,93 @@ func ReadFile(path string) (map[string][]int, error) {
 	return m, nil
 }
 
-func binarySearch(n int, idx []int) (int, error) {
-	if len(idx) == 0 {
-		return 0, errors.New("index slice is empty")
+// absolute value
+func abs(n int) int {
+	if n < 0 {
+		return -n
+	}
+	return n
+}
+
+// minimum
+func min(x, y int) int {
+	if x < y {
+		return x
+	}
+	return y
+}
+
+// O(m + n) find the element in idx1 and the element in idx2
+// that are closest to each other and return the distance
+func closestPair(idx1, idx2 []int) int {
+	if len(idx1) == 1 && len(idx2) == 1 {
+		return abs(idx1[0] - idx2[0])
 	}
 
-	if n < idx[0] {
-		return idx[0] - n, nil
-	}
-	if n > idx[len(idx)-1] {
-		return n - idx[len(idx)-1], nil
-	}
-	if len(idx) == 2 {
-		return int(math.Min(float64(n-idx[0]), float64(idx[1]-n))), nil
+	if len(idx1) == 1 {
+		distance := 0
+		currentDistance := 0
+		i := 0
+
+		for i < len(idx2) && (currentDistance == 0 || distance < currentDistance) {
+			currentDistance = distance
+			distance = abs(idx1[0] - idx2[i])
+			i++
+		}
+
+		return min(distance, currentDistance)
+	} else if len(idx2) == 1 {
+		distance := 0
+		currentDistance := 0
+		i := 0
+
+		for i < len(idx1) && (currentDistance == 0 || distance < currentDistance) {
+			currentDistance = distance
+			distance = abs(idx2[0] - idx1[i])
+			i++
+		}
+
+		return min(distance, currentDistance)
 	}
 
 	i := 0
-	j := len(idx) - 1
-	span := j - i
+	j := 0
+	minDistance := -1
+	distance := 0
 
-	for span > 1 {
-		middle := idx[i+span/2]
+	for i < len(idx1)-1 && j < len(idx2)-1 {
+		distance = abs(idx1[i] - idx2[j])
+		iDistance := abs(idx1[i+1] - idx2[j])
+		jDistance := abs(idx1[i] - idx2[j+1])
 
-		if n < middle {
-			j = i + span/2
-		} else {
-			i = i + span/2
+		if minDistance == -1 || distance < minDistance {
+			minDistance = distance
 		}
 
-		span = j - i
+		if iDistance < jDistance {
+			i++
+		} else {
+			j++
+		}
 	}
 
-	return int(math.Min(float64(n-idx[i]), float64(idx[j]-n))), nil
+	currentDistance := distance
+
+	if i == len(idx1)-1 {
+		for j < len(idx2) && distance <= currentDistance {
+			j++
+			currentDistance = distance
+			distance = abs(idx1[i] - idx2[j])
+		}
+	} else if i != len(idx1)-1 {
+		for i < len(idx1) && distance <= currentDistance {
+			i++
+			currentDistance = distance
+			distance = abs(idx1[i] - idx2[j])
+		}
+	}
+
+	return min(minDistance, currentDistance)
 }
 
 // MinWordDistance finds the minimum distance (number of words)
@@ -76,28 +129,5 @@ func MinWordDistance(m map[string][]int, w1, w2 string) (int, error) {
 		return 0, fmt.Errorf("%s does not appear in the file", w2)
 	}
 
-	var outer, inner []int
-
-	if len(idx1) > len(idx2) {
-		outer = idx2
-		inner = idx1
-	} else {
-		outer = idx1
-		inner = idx2
-	}
-
-	minDistance := -1
-
-	for _, n := range outer {
-		min, err := binarySearch(n, inner)
-		if err != nil {
-			return 0, err
-		}
-
-		if minDistance == -1 || min < minDistance {
-			minDistance = min
-		}
-	}
-
-	return minDistance, nil
+	return closestPair(idx1, idx2), nil
 }

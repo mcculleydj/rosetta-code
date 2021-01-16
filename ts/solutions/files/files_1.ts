@@ -15,32 +15,83 @@ function readFile(path: string): { [key: string]: number[] } {
   return wordToIndices
 }
 
-function binarySearch(n: number, idx: number[]): number {
-  if (idx.length === 0) {
-    throw 'index array is empty'
+// O(m + n) find the element in idx1 and the element in idx2
+// that are closest to each other and return the distance
+function closestPair(idx1: number[], idx2: number[]): number {
+  if (idx1.length === 1 && idx2.length === 1) {
+    return Math.abs(idx1[0] - idx2[0])
   }
 
-  if (n < idx[0]) return idx[0] - n
-  if (n > idx[idx.length - 1]) return n - idx[idx.length - 1]
-  if (idx.length === 2) return Math.min(n - idx[0], idx[1] - n)
+  if (idx1.length === 1) {
+    let distance = 0
+    let currentDistance = 0
+    let i = 0
 
-  let i = 0
-  let j = idx.length - 1
-  let span = j - i
-
-  while (span > 1) {
-    const middle = idx[Math.floor(i + span / 2)]
-
-    if (n < middle) {
-      j = Math.floor(i + span / 2)
-    } else {
-      i += Math.floor(span / 2)
+    while (
+      i < idx2.length &&
+      (currentDistance === 0 || distance < currentDistance)
+    ) {
+      currentDistance = distance
+      distance = Math.abs(idx1[0] - idx2[i])
+      i++
     }
 
-    span = j - i
+    return Math.min(distance, currentDistance)
+  } else if (idx2.length === 1) {
+    let distance = 0
+    let currentDistance = 0
+    let i = 0
+
+    while (
+      i < idx1.length &&
+      (currentDistance === 0 || distance < currentDistance)
+    ) {
+      currentDistance = distance
+      distance = Math.abs(idx2[0] - idx1[i])
+      i++
+    }
+
+    return Math.min(distance, currentDistance)
   }
 
-  return Math.min(n - idx[i], idx[j] - n)
+  let i = 0
+  let j = 0
+  let minDistance = -1
+  let distance = 0
+
+  while (i < idx1.length - 1 && j < idx2.length - 1) {
+    distance = Math.abs(idx1[i] - idx2[j])
+    const iDistance = Math.abs(idx1[i + 1] - idx2[j])
+    const jDistance = Math.abs(idx1[i] - idx2[j + 1])
+
+    if (minDistance === -1 || distance < minDistance) {
+      minDistance = distance
+    }
+
+    if (iDistance < jDistance) {
+      i++
+    } else {
+      j++
+    }
+  }
+
+  let currentDistance = distance
+
+  if (i === idx1.length - 1) {
+    while (j < idx2.length && distance <= currentDistance) {
+      j++
+      currentDistance = distance
+      distance = Math.abs(idx1[i] - idx2[j])
+    }
+  } else if (i !== idx1.length - 1) {
+    while (i < idx1.length && distance <= currentDistance) {
+      i++
+      currentDistance = distance
+      distance = Math.abs(idx1[i] - idx2[j])
+    }
+  }
+
+  return Math.min(minDistance, currentDistance)
 }
 
 function minWordDistance(
@@ -61,25 +112,5 @@ function minWordDistance(
     throw `${w2} does not appear in the file`
   }
 
-  let outer: number[]
-  let inner: number[]
-
-  if (idx1.length > idx2.length) {
-    outer = idx2
-    inner = idx1
-  } else {
-    outer = idx1
-    inner = idx2
-  }
-
-  let minDistance: number
-
-  outer.forEach(n => {
-    const min = binarySearch(n, inner)
-    if (!minDistance || min < minDistance) {
-      minDistance = min
-    }
-  })
-
-  return minDistance
+  return closestPair(idx1, idx2)
 }
