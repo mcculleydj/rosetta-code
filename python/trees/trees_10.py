@@ -49,37 +49,3 @@ def paths_to_sum(node, target, current, paths):
     update_paths(paths, current, -1)
 
     return total
-
-
-n1 = TreeNode(0)
-n2 = TreeNode(0)
-n3 = TreeNode(3)
-n4 = TreeNode(3)
-
-n1.left = n2
-n2.left = n3
-n2.right = n4
-
-print(paths_to_sum(n1, 3, 0, {}))
-
-
-n1 = TreeNode(10)
-n2 = TreeNode(5)
-n3 = TreeNode(-3)
-n4 = TreeNode(3)
-n5 = TreeNode(2)
-n6 = TreeNode(11)
-n7 = TreeNode(3)
-n8 = TreeNode(-2)
-n9 = TreeNode(1)
-
-n1.left = n2
-n1.right = n3
-n2.left = n4
-n2.right = n5
-n3.right = n6
-n4.left = n7
-n4.right = n8
-n5.right = n9
-
-print(paths_to_sum(n1, 8, 0, {}))
