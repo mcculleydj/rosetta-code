@@ -1,6 +1,10 @@
 <template>
   <v-list class="pl-2">
-    <v-list-group v-for="category in categories" :key="`category-${category}`">
+    <v-list-group
+      v-for="(category, i) in categories"
+      :key="`category-${category}`"
+      v-model="lists[i]"
+    >
       <template v-slot:activator>
         <v-list-item-content>
           <v-list-item-title style="font-size: 20px">
@@ -32,6 +36,8 @@
 import problems from '@/../public/problems.json'
 
 export default {
+  props: ['backTrigger'],
+
   computed: {
     categories() {
       return Object.keys(problems)
@@ -41,12 +47,20 @@ export default {
   data: () => ({
     problems,
     selectedProblem: null,
+    lists: [],
   }),
 
   methods: {
     onClick(problem) {
       this.selectedProblem = problem
       this.$emit('select', problem)
+    },
+  },
+
+  watch: {
+    backTrigger() {
+      this.selectedProblem = null
+      this.lists = this.lists.map(() => false)
     },
   },
 }

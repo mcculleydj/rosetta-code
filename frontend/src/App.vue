@@ -4,8 +4,11 @@
       <v-container fluid>
         <v-row>
           <v-col cols="auto">
-            <v-img src="logo.png" width="300" />
-            <ProblemList @select="handleSelection($event)" />
+            <v-img src="logo.png" width="300" @click="back()" class="brand" />
+            <ProblemList
+              :backTrigger="backTrigger"
+              @select="handleSelection($event)"
+            />
           </v-col>
           <v-col class="scroll mt-5">
             <template v-if="problem">
@@ -90,11 +93,13 @@ export default {
 
   data: () => ({
     problem: null,
+    backTrigger: {},
   }),
 
   methods: {
     back() {
       this.problem = null
+      this.backTrigger = {}
     },
 
     handleSelection(problem) {
@@ -141,5 +146,9 @@ export default {
 .desc-txt {
   font-size: 20px;
   color: rgba(0, 0, 0, 0.57);
+}
+
+.brand {
+  cursor: pointer;
 }
 </style>
