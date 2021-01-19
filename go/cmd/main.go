@@ -2,14 +2,18 @@ package main
 
 import (
 	"fmt"
-	"rosetta-code/pkg/files"
+	"rosetta-code/pkg/trees"
 )
 
 func main() {
-	m, err := files.ReadFile("pkg/files/file_1.txt")
-	if err != nil {
-		panic(err.Error())
-	}
-	fmt.Println(files.MinWordDistance(m, "Hippolyte", "Lavater"))
-	fmt.Println(files.MinWordDistance(m, "Hippolyte", "Bolk"))
+	n1 := &trees.TreeNode{Data: 0}
+	n2 := &trees.TreeNode{Data: 0}
+	n3 := &trees.TreeNode{Data: 3}
+	n4 := &trees.TreeNode{Data: 3}
+
+	n1.Left = n2
+	n2.Left = n3
+	n2.Right = n4
+
+	fmt.Println(trees.PathsToSum(n1, 3, 0, map[int]int{}))
 }
