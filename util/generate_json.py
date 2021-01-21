@@ -17,7 +17,8 @@ name_to_category = {
     'matrices': 'Matrices',
     'trees': 'Trees',
     'graphs': 'Graphs',
-    'files': 'Files'
+    'files': 'Files',
+    'bits': 'Bits',
 }
 
 problems_dict = {}

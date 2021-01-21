@@ -1,4 +1,15 @@
 {
+    "Bits": [
+        {
+            "description": "Write a function that adds two integers. You should not use + or any arithmetic operators.",
+            "go": "package bits\n\nimport (\n\t\"errors\"\n)\n\n// Add is O(n) where n is the number of bits necessary\n// to represent the larger number\nfunc Add(x, y int64) (int64, error) {\n\tfor y != 0 {\n\t\t// produce a bit vector where both bits are 1s\n\t\t// and we will need to carry over to the left\n\t\tcarry := x & y\n\n\t\t// XOR is the result of addition without carrying\n\t\tx = x ^ y\n\n\t\t// store value of y before the shift\n\t\ty0 := y\n\n\t\t// shift the carry vector and repeat this process\n\t\ty = carry << 1\n\n\t\t// if y ever shifts from positive to negative or vice versa\n\t\t// the sum of the two numbers has overflowed the int64\n\t\tif (y0 < 0 && y > 0) || (y0 > 0 && y < 0) {\n\t\t\treturn 0, errors.New(\"int64 overflow\")\n\t\t}\n\t}\n\n\treturn x, nil\n}\n",
+            "number": "1",
+            "python": "# will not overflow in Python because integers have arbitrary precision\n# under the covers this may require arithmetic operations\n# but, the spirit of the prompt is to solve this using bitwise operators\n\n\ndef add(x, y):\n    while y != 0:\n        # produce a bit vector where both bits are 1s\n        # and we will need to carry over to the left\n        carry = x & y\n\n        # XOR is the result of addition without carrying\n        x ^= y\n\n        # shift the carry vector and repeat this process\n        y = carry << 1\n\n    return x\n",
+            "stem": "bits_1",
+            "title": "Add Without Plus",
+            "ts": "/*\nJS uses 32-bit bitwise operands. JS stores numbers as 64 bit floating point numbers, but all bitwise operations are performed on 32 bits binary numbers. Before a bitwise operation is performed, JS converts numbers to 32 bits signed integers.\n*/\n\n// O(n), where n is the number of bits necessary to represent\n// the larger of the 2 numbers\nfunction add(x: number, y: number): number {\n  if (!Number.isSafeInteger(x) || !Number.isSafeInteger(y)) {\n    throw 'arguments are not precision safe'\n  }\n\n  console.log(x, y)\n\n  while (y !== 0) {\n    const carry = x & y\n    x ^= y\n    const y_ = y\n    y = carry << 1\n\n    if ((y_ < 0 && y > 0) || (y_ > 0 && y < 0)) {\n      throw 'integer overflow'\n    }\n  }\n\n  return x\n}\n"
+        }
+    ],
     "Files": [
         {
             "description": "You have a large text file containing words. Given any two words, find the shortest distance (in terms of number of words) between them in the file. If the operation will be repeated many times for the same file (but different pairs of words), can you optimize your solution?",
