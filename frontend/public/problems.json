@@ -8,6 +8,15 @@
             "stem": "bits_1",
             "title": "Add Without Plus",
             "ts": "/*\nJS uses 32-bit bitwise operands. JS stores numbers as 64 bit floating point numbers, but all bitwise operations are performed on 32 bits binary numbers. Before a bitwise operation is performed, JS converts numbers to 32 bits signed integers.\n*/\n\n// O(n), where n is the number of bits necessary to represent\n// the larger of the 2 numbers\nfunction add(x: number, y: number): number {\n  if (!Number.isSafeInteger(x) || !Number.isSafeInteger(y)) {\n    throw 'arguments are not precision safe'\n  }\n\n  console.log(x, y)\n\n  while (y !== 0) {\n    const carry = x & y\n    x ^= y\n    const y_ = y\n    y = carry << 1\n\n    if ((y_ < 0 && y > 0) || (y_ > 0 && y < 0)) {\n      throw 'integer overflow'\n    }\n  }\n\n  return x\n}\n"
+        },
+        {
+            "description": "Given two 32-bit numbers, N and M, and a position, i (0-31), write a method to insert M into N such that M starts at bit i. You can assume that for all M and i, this insertion will not overflow the 32-bit capacity. E.g. if M = 10011, then i <= 27.",
+            "go": "package bits\n\nfunc getMSB(n int32) int32 {\n\tif n == 0 {\n\t\treturn 0\n\t}\n\n\tvar msb int32\n\n\tfor i := 0; i < 32; i++ {\n\t\tb := n & 1\n\t\tn = n >> 1\n\n\t\tif b == 1 {\n\t\t\tmsb = int32(i)\n\t\t}\n\t}\n\n\treturn msb\n}\n\n// Insert splices m into n\nfunc Insert(m, n, i int32) int32 {\n\tvar left, right int32\n\tmsb := getMSB(m)\n\tm = m << i\n\tleft = -1 << (i + msb)\n\tright = (1 << i) - 1\n\tmask := left | right\n\tn = n & mask\n\n\treturn m | n\n}\n",
+            "number": "2",
+            "python": "# Approach:\n# Shift M such that its right-most bit is at the ith position\n# Mask N such that all bits between i and i + most_significant_bit(M) is 0\n# Use a bitwise OR to produce the desired number\n\n\ndef get_most_significant_bit_32(n):\n    if n == 0:\n        return 0\n\n    msb = 0\n\n    for i in range(32):\n        b = n & 1\n        n >>= 1\n\n        if b == 1:\n            msb = i\n\n    return msb\n\n\ndef insert(m, n, i):\n    msb = get_most_significant_bit_32(m)\n    m <<= i\n\n    # preserve N to the left of the range to replace (1s)\n    left = -1 << i + msb\n    # preserve N to the right of i (1s)\n    right = (1 << i) - 1\n    # O from i to i + msb and 1 outside of this range\n    mask = left | right\n    # mask N\n    n &= mask\n\n    return m | n\n",
+            "stem": "bits_2",
+            "title": "Insertion",
+            "ts": "function getMSB(n: number): number {\n  if (n === 0) return 0\n  let msb = 0\n\n  for (let i = 0; i < 32; i++) {\n    const b = n & 1\n    n >>= 1\n\n    if (b === 1) {\n      msb = i\n    }\n  }\n\n  return msb\n}\n\nfunction insert(m: number, n: number, i: number): number {\n  const msb = getMSB(m)\n  m <<= i\n  const left = -1 << (i + msb)\n  const right = (1 << i) - 1\n  const mask = left | right\n  n &= mask\n\n  return m | n\n}\n"
         }
     ],
     "Files": [

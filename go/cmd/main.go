@@ -6,14 +6,6 @@ import (
 )
 
 func main() {
-	// sum, err := bits.Add(-4, -10)
-	// if err != nil {
-	// 	fmt.Println(err.Error())
-	// }
-	// fmt.Println(sum)
-	sum, err := bits.Add(9223372036854775807, 1)
-	if err != nil {
-		fmt.Println(err.Error())
-	}
-	fmt.Println(sum)
+	fmt.Println(bits.Insert(8, 255, 0))
+	fmt.Println(bits.Insert(8, 255, 27))
 }
