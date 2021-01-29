@@ -17,6 +17,15 @@
             "stem": "bits_2",
             "title": "Insertion",
             "ts": "function getMSB(n: number): number {\n  if (n === 0) return 0\n  let msb = 0\n\n  for (let i = 0; i < 32; i++) {\n    const b = n & 1\n    n >>= 1\n\n    if (b === 1) {\n      msb = i\n    }\n  }\n\n  return msb\n}\n\nfunction insert(m: number, n: number, i: number): number {\n  const msb = getMSB(m)\n  m <<= i\n  const left = -1 << (i + msb)\n  const right = (1 << i) - 1\n  const mask = left | right\n  n &= mask\n\n  return m | n\n}\n"
+        },
+        {
+            "description": "Given a real number between 0 and 1 supplied as a double, write a method to return the binary string representation with at most 32 characters (bits). If this is not possible because of precision loss return or throw an error instead.",
+            "go": "package bits\n\nimport (\n\t\"errors\"\n\t\"strings\"\n)\n\n// BinaryToString performs at most 32 iterations\nfunc BinaryToString(n float64) (string, error) {\n\tbits := []string{}\n\tfor n > 0 {\n\t\tif len(bits) > 31 {\n\t\t\treturn \"\", errors.New(\"loss of precision\")\n\t\t}\n\n\t\tk := n * 2\n\n\t\tif k >= 1 {\n\t\t\tbits = append(bits, \"1\")\n\t\t\tn = k - 1\n\t\t} else {\n\t\t\tbits = append(bits, \"0\")\n\t\t\tn = k\n\t\t}\n\t}\n\n\treturn \".\" + strings.Join(bits, \"\"), nil\n}\n",
+            "number": "3",
+            "python": "# Approach:\n# represent a number between 0 and 1 as the following sum:\n# (1 || 0) * 1/2^0 + (1 || 0) * 1/2^1...\n# 0.625 base 10 => 0.101 base 2\n# assume we start counting characters to reach the max of 32\n# after the decimal point\n\ndef binary_to_string(n):\n    # based on the prompt\n    # assume n is between 0 and 1 non-inclusive\n    bits = []\n    while n > 0:\n        if len(bits) > 31:\n            raise Exception('loss of precision')\n\n        k = n * 2\n        if k >= 1:\n            bits.append('1')\n            n = k - 1\n        else:\n            bits.append('0')\n            n = k\n\n    return ''.join(bits)\n",
+            "stem": "bits_3",
+            "title": "Binary to String",
+            "ts": "// O(32)\nfunction binaryToString(n: number): string {\n  const bits: string[] = []\n\n  while (n > 0) {\n    if (bits.length > 31) throw 'loss of precision'\n\n    const k = n * 2\n\n    if (k >= 1) {\n      bits.push('1')\n      n = k - 1\n    } else {\n      bits.push('0')\n      n = k\n    }\n  }\n\n  return '.' + bits.join('')\n}\n"
         }
     ],
     "Files": [

@@ -6,6 +6,5 @@ import (
 )
 
 func main() {
-	fmt.Println(bits.Insert(8, 255, 0))
-	fmt.Println(bits.Insert(8, 255, 27))
+	fmt.Println(bits.BinaryToString(.625))
 }
